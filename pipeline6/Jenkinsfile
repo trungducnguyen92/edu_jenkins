@@ -13,14 +13,14 @@ pipeline {
             //agent {label 'mynode2'}
             steps {
                 sh '''
-                    ./jenkins/build/mvn.sh mvn -B -DskipTests clean package
-                    ./jenkins/build/build.sh
+                    ./pipeline6/jenkins/build/mvn.sh mvn -B -DskipTests clean package
+                    ./pipeline6/jenkins/build/build.sh
                 '''
             }
 
             post {
                 success {
-                   archiveArtifacts artifacts: 'java-app/target/*.jar', fingerprint: true
+                   archiveArtifacts artifacts: './pipeline6/java-app/target/*.jar', fingerprint: true
                 }
             }
         }
@@ -28,12 +28,12 @@ pipeline {
         stage('Test') {
             //agent {label 'mynode2'}
             steps {
-                sh './jenkins/test/mvn.sh mvn test'
+                sh './pipeline6/jenkins/test/mvn.sh mvn test'
             }
 
             post {
                 always {
-                    junit 'java-app/target/surefire-reports/*.xml'
+                    junit './pipeline6/java-app/target/surefire-reports/*.xml'
                 }
             }
         }
@@ -41,14 +41,14 @@ pipeline {
         stage('Push') {
             //agent {label 'mynode2'}
             steps {
-                sh './jenkins/push/push.sh'
+                sh './pipeline6/jenkins/push/push.sh'
             }
         }
 
         stage('Deploy') {
             //agent {label 'mynode2'}
             steps {
-                sh './jenkins/deploy/deploy.sh'
+                sh './pipeline6/jenkins/deploy/deploy.sh'
             }
         }
     }
