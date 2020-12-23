@@ -1,7 +1,7 @@
 pipeline {
 
-    agent none
-    //agent {label 'mynode2'}
+    //agent none
+    agent {label 'node2'}
     
     environment {
         PASS = credentials('registry-pass') 
@@ -10,7 +10,7 @@ pipeline {
     stages {
 
         stage('Build') {
-            agent {label 'node2'}
+            //agent {label 'node2'}
             steps {
                 sh '''
                     ./pipeline6/jenkins/build/mvn.sh mvn -B -DskipTests clean package
@@ -26,7 +26,7 @@ pipeline {
         }
 
         stage('Test') {
-            agent {label 'node2'}
+            //agent {label 'node2'}
             steps {
                 sh './pipeline6/jenkins/test/mvn.sh mvn test'
             }
@@ -39,14 +39,14 @@ pipeline {
         }
 
         stage('Push') {
-            agent {label 'node2'}
+            //agent {label 'node2'}
             steps {
                 sh './pipeline6/jenkins/push/push.sh'
             }
         }
 
         stage('Deploy') {
-            agent {label 'node1'}
+            //agent {label 'node1'}
             steps {
                 sh './pipeline6/jenkins/deploy/deploy.sh'
             }
