@@ -11,7 +11,6 @@ pipeline {
 
         stage('Build') {
             agent {label 'master'}
-            withEnv(["PATH=$PATH:~/.local/bin"])
             steps {
                 sh '''
                     ./pipeline6/jenkins/build/mvn.sh mvn -B -DskipTests clean package
