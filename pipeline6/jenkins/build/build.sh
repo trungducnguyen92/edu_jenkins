@@ -7,4 +7,4 @@ echo "****************************"
 echo "** Building Docker Image ***"
 echo "****************************"
 
-docker-compose -f docker-compose-build.yml build
+cd pipeline6/jenkins/build/ && docker-compose -f docker-compose-build.yml build
