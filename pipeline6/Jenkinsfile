@@ -46,7 +46,7 @@ pipeline {
         }
 
         stage('Deploy') {
-            agent {label 'ubuntu'}
+            agent {label 'jenkin_2'}
             steps {
                 sh './pipeline6/jenkins/deploy/deploy.sh'
             }
