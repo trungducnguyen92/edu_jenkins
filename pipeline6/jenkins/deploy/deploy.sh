@@ -6,5 +6,5 @@ echo $PASS >> /tmp/.auth
 
 scp /tmp/.auth root@192.168.1.45:/tmp/.auth
 scp ./pipeline6/jenkins/deploy/publish root@192.168.1.45:/tmp/publish
-scp ./pipeline6/jenkins/build/docker-compose-build.yml root@192.168.1.45:/root/maven
+scp ./pipeline6/jenkins/build/docker-compose-build.yml root@192.168.1.45:/root/maven/docker-compose.yml
 ssh root@192.168.1.45 "/tmp/publish"
